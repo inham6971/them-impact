@@ -127,6 +127,24 @@
         "background_gradient": "linear-gradient(60deg, rgba(60, 65, 68, 1), rgba(23, 29, 33, 1) 98%)"
       }
     },
+    "calcule_rent_CynEQM": {
+      "type": "calcule-rent",
+      "name": "clc renta",
+      "settings": {
+        "title": "Calculez votre rentabilité",
+        "description": "<p>Estimez vos revenus potentiels en quelques clics</p>",
+        "label_prix": "Prix de la séance (€)",
+        "label_clients": "Nombre de clients par jour",
+        "label_jours": "Jours travaillés par semaine",
+        "default_prix": 150,
+        "default_clients": 5,
+        "default_jours": 5,
+        "background_color": "#f8f9fa",
+        "title_color": "#000000",
+        "accent_color": "#007bff",
+        "highlight_color": "#28a745"
+      }
+    },
     "image-link-blocks": {
       "type": "image-link-blocks",
       "blocks": {
@@ -824,6 +842,7 @@
   "order": [
     "image_with_text_overlay_WLA7dd",
     "slideshow",
+    "calcule_rent_CynEQM",
     "image-link-blocks",
     "scrolling-text",
     "collection-list",
