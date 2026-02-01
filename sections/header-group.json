@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
@@ -5,22 +14,50 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
+        "message_84LV9q": {
+          "type": "message",
+          "settings": {
+            "text": "Service client 7/7j",
+            "url": ""
+          }
+        },
+        "message_bKyrKx": {
+          "type": "message",
+          "settings": {
+            "text": "-10% sur votre première commande",
+            "url": ""
+          }
+        },
+        "message_JJhPVP": {
+          "type": "message",
+          "settings": {
+            "text": "Livraison gratuite",
+            "url": ""
+          }
+        },
         "message": {
           "type": "message",
           "settings": {
-            "text": "Announce something here"
+            "text": "Paiement 100% sécurisé",
+            "url": ""
           }
         }
       },
       "block_order": [
+        "message_84LV9q",
+        "message_bKyrKx",
+        "message_JJhPVP",
         "message"
       ],
       "settings": {
         "enable_sticky": false,
+        "autoplay": false,
+        "cycle_speed": 6,
         "text_size": "text-xs",
         "navigation_mode": "scrolling",
         "scrolling_speed": 10,
-        "background": "#1a1a1a",
+        "background": "#ad9a80",
+        "background_gradient": "",
         "text_color": "#ffffff"
       }
     },
@@ -29,14 +66,18 @@
       "settings": {
         "enable_sticky": true,
         "hide_on_scroll": false,
-        "logo": "{{shop.brand.logo}}",
-        "logo_max_width": 120,
-        "logo_mobile_max_width": 100,
+        "logo": "shopify://shop_images/logo_entier1500X500.png",
+        "logo_max_width": 300,
+        "logo_mobile_max_width": 140,
         "menu": "main-menu",
+        "sidebar_menu": "",
+        "secondary_menu": "",
         "menu_open_trigger": "click",
         "opening_from": "bottom",
         "layout": "logo_left_navigation_center",
         "show_social_media": true,
+        "show_locale_selector": true,
+        "show_country_selector": true,
         "show_country_flag": true,
         "show_country_name": false,
         "transparent_header_text_color": "#ffffff",
