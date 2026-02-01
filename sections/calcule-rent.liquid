@@ -1,0 +1,503 @@
+{% comment %}
+  Section de calcul de rentabilité pour machine
+  Compatible avec le thème Impact
+{% endcomment %}
+
+<div class="calculator-rentabilite-section" data-section-id="{{ section.id }}" data-section-type="calculator-rentabilite">
+  <div class="container">
+    <div class="calculator-wrapper">
+      
+      {% if section.settings.title != blank %}
+        <h2 class="calculator-title">{{ section.settings.title }}</h2>
+      {% endif %}
+      
+      {% if section.settings.description != blank %}
+        <div class="calculator-description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      <div class="calculator-content">
+        <!-- Formulaire de calcul -->
+        <div class="calculator-inputs">
+          
+          <div class="input-group">
+            <label for="prix-seance-{{ section.id }}">
+              {{ section.settings.label_prix | default: "Prix de la séance" }}
+            </label>
+            <div class="slider-container">
+              <input 
+                type="range" 
+                id="prix-seance-{{ section.id }}" 
+                class="calculator-slider" 
+                value="{{ section.settings.default_prix | default: 50 }}" 
+                min="50" 
+                max="500" 
+                step="10"
+              >
+              <div class="slider-value">
+                <span id="prix-value-{{ section.id }}">50</span> €
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="clients-jour-{{ section.id }}">
+              {{ section.settings.label_clients | default: "Nombre de clients par jour" }}
+            </label>
+            <div class="slider-container">
+              <input 
+                type="range" 
+                id="clients-jour-{{ section.id }}" 
+                class="calculator-slider" 
+                value="{{ section.settings.default_clients | default: 5 }}" 
+                min="1" 
+                max="10" 
+                step="1"
+              >
+              <div class="slider-value">
+                <span id="clients-value-{{ section.id }}">5</span> clients
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="jours-semaine-{{ section.id }}">
+              {{ section.settings.label_jours | default: "Jours travaillés par semaine" }}
+            </label>
+            <div class="slider-container">
+              <input 
+                type="range" 
+                id="jours-semaine-{{ section.id }}" 
+                class="calculator-slider" 
+                value="{{ section.settings.default_jours | default: 5 }}" 
+                min="1" 
+                max="7" 
+                step="1"
+              >
+              <div class="slider-value">
+                <span id="jours-value-{{ section.id }}">5</span> jours
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Résultats -->
+        <div class="calculator-results">
+          
+          <div class="result-card result-journalier">
+            <div class="result-label">Chiffre d'affaires journalier</div>
+            <div class="result-value" id="ca-journalier-{{ section.id }}">0 €</div>
+          </div>
+
+          <div class="result-card result-hebdo">
+            <div class="result-label">Chiffre d'affaires hebdomadaire</div>
+            <div class="result-value" id="ca-hebdo-{{ section.id }}">0 €</div>
+          </div>
+
+          <div class="result-card result-mensuel">
+            <div class="result-label">Chiffre d'affaires mensuel</div>
+            <div class="result-value" id="ca-mensuel-{{ section.id }}">0 €</div>
+          </div>
+
+          <div class="result-card result-annuel">
+            <div class="result-label">Chiffre d'affaires annuel</div>
+            <div class="result-value" id="ca-annuel-{{ section.id }}">0 €</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.calculator-rentabilite-section {
+  padding: 60px 20px;
+  background-color: {{ section.settings.background_color | default: '#f8f9fa' }};
+}
+
+.calculator-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.calculator-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: {{ section.settings.title_color | default: '#000' }};
+}
+
+.calculator-description {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.calculator-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .calculator-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.calculator-inputs {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.slider-container {
+  position: relative;
+}
+
+.calculator-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #e0e0e0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.calculator-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: {{ section.settings.accent_color | default: '#007bff' }};
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+.calculator-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.calculator-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: {{ section.settings.accent_color | default: '#007bff' }};
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+.calculator-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.calculator-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, 
+    {{ section.settings.accent_color | default: '#007bff' }} 0%, 
+    {{ section.settings.accent_color | default: '#007bff' }} var(--slider-progress, 0%), 
+    #e0e0e0 var(--slider-progress, 0%), 
+    #e0e0e0 100%);
+}
+
+.calculator-slider::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #e0e0e0;
+}
+
+.calculator-slider::-moz-range-progress {
+  height: 8px;
+  border-radius: 5px;
+  background: {{ section.settings.accent_color | default: '#007bff' }};
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: {{ section.settings.accent_color | default: '#007bff' }};
+  margin-top: 0.5rem;
+}
+
+.calculator-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+.calculator-input:focus {
+  outline: none;
+  border-color: {{ section.settings.accent_color | default: '#007bff' }};
+}
+
+.calculator-results {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .calculator-results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.result-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+}
+
+.result-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.result-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: {{ section.settings.accent_color | default: '#007bff' }};
+}
+
+.result-annuel .result-value {
+  font-size: 2rem;
+  color: {{ section.settings.highlight_color | default: '#28a745' }};
+}
+
+@media (max-width: 767px) {
+  .calculator-title {
+    font-size: 2rem;
+  }
+  
+  .result-value {
+    font-size: 1.5rem;
+  }
+  
+  .result-annuel .result-value {
+    font-size: 1.7rem;
+  }
+}
+</style>
+
+<script>
+(function() {
+  const sectionId = '{{ section.id }}';
+  
+  const prixInput = document.getElementById(`prix-seance-${sectionId}`);
+  const clientsInput = document.getElementById(`clients-jour-${sectionId}`);
+  const joursInput = document.getElementById(`jours-semaine-${sectionId}`);
+  
+  const prixValue = document.getElementById(`prix-value-${sectionId}`);
+  const clientsValue = document.getElementById(`clients-value-${sectionId}`);
+  const joursValue = document.getElementById(`jours-value-${sectionId}`);
+  
+  const caJournalier = document.getElementById(`ca-journalier-${sectionId}`);
+  const caHebdo = document.getElementById(`ca-hebdo-${sectionId}`);
+  const caMensuel = document.getElementById(`ca-mensuel-${sectionId}`);
+  const caAnnuel = document.getElementById(`ca-annuel-${sectionId}`);
+  
+  function formatNumber(num) {
+    return new Intl.NumberFormat('fr-FR', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(num);
+  }
+  
+  function updateSliderProgress(slider) {
+    const min = slider.min || 0;
+    const max = slider.max || 100;
+    const value = slider.value;
+    const percentage = ((value - min) / (max - min)) * 100;
+    slider.style.setProperty('--slider-progress', percentage + '%');
+  }
+  
+  function updateDisplayValues() {
+    prixValue.textContent = prixInput.value;
+    clientsValue.textContent = clientsInput.value;
+    joursValue.textContent = joursInput.value;
+    
+    updateSliderProgress(prixInput);
+    updateSliderProgress(clientsInput);
+    updateSliderProgress(joursInput);
+  }
+  
+  function calculer() {
+    const prix = parseFloat(prixInput.value) || 0;
+    const clients = parseFloat(clientsInput.value) || 0;
+    const jours = parseFloat(joursInput.value) || 0;
+    
+    // Calculs
+    const journalier = prix * clients;
+    const hebdo = journalier * jours;
+    const mensuel = hebdo * 4.33; // Moyenne de semaines par mois
+    const annuel = mensuel * 12;
+    
+    // Affichage
+    caJournalier.textContent = formatNumber(journalier) + ' €';
+    caHebdo.textContent = formatNumber(hebdo) + ' €';
+    caMensuel.textContent = formatNumber(mensuel) + ' €';
+    caAnnuel.textContent = formatNumber(annuel) + ' €';
+    
+    // Mise à jour des valeurs affichées
+    updateDisplayValues();
+  }
+  
+  // Event listeners
+  prixInput.addEventListener('input', calculer);
+  clientsInput.addEventListener('input', calculer);
+  joursInput.addEventListener('input', calculer);
+  
+  // Calcul et initialisation
+  calculer();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "clc renta",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Calculez votre rentabilité"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Estimez vos revenus potentiels en quelques clics</p>"
+    },
+    {
+      "type": "header",
+      "content": "Labels des champs"
+    },
+    {
+      "type": "text",
+      "id": "label_prix",
+      "label": "Label prix de la séance",
+      "default": "Prix de la séance (€)"
+    },
+    {
+      "type": "text",
+      "id": "label_clients",
+      "label": "Label nombre de clients",
+      "default": "Nombre de clients par jour"
+    },
+    {
+      "type": "text",
+      "id": "label_jours",
+      "label": "Label jours travaillés",
+      "default": "Jours travaillés par semaine"
+    },
+    {
+      "type": "header",
+      "content": "Valeurs par défaut"
+    },
+    {
+      "type": "range",
+      "id": "default_prix",
+      "label": "Prix par défaut",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "default_clients",
+      "label": "Clients par défaut",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "number",
+      "id": "default_jours",
+      "label": "Jours par défaut",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Couleur de fond",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Couleur du titre",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent",
+      "default": "#007bff"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Couleur du CA annuel",
+      "default": "#28a745"
+    }
+  ],
+  "presets": [
+    {
+      "name": "clc renta"
+    }
+  ]
+}
+{% endschema %}
