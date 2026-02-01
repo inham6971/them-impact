@@ -28,16 +28,27 @@
         },
         "richtext_anBh6R": {
           "type": "richtext",
-          "disabled": true,
           "settings": {
-            "content": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+            "content": "<p>Alliez haute technologie et rentabilité avec nos équipements de nouvelle génération.</p>"
+          }
+        },
+        "button_7WNAMx": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "lg",
+            "text": "Calculer ma rentabilité",
+            "url": "",
+            "background": "#ffffff",
+            "text_color": "#8e7b61"
           }
         }
       },
       "block_order": [
         "subheading_bXymjy",
         "heading_BfGkMc",
-        "richtext_anBh6R"
+        "richtext_anBh6R",
+        "button_7WNAMx"
       ],
       "name": "Image with text overlay",
       "settings": {
