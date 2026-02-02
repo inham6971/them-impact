@@ -241,14 +241,14 @@
       "type": "scrolling-text",
       "settings": {
         "full_width": true,
-        "text": "Promotion text",
-        "text_size": "large",
+        "text": "TECHNOLOGIE - INNOVATION - LUXE - RÉSULTATS",
+        "text_size": "medium",
         "text_style": "fill",
         "scrolling_mode": "auto",
-        "scrolling_speed": 5,
+        "scrolling_speed": 15,
         "background": "",
         "background_gradient": "",
-        "text_color": "",
+        "text_color": "#8e7b61ff",
         "text_gradient": ""
       }
     },
