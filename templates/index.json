@@ -67,6 +67,65 @@
         "overlay_opacity": 0
       }
     },
+    "logo_list_dBbMLE": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_8rHrHk": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/5_9f30929a-0feb-49b5-87da-b2f1e5dea1db.png",
+            "logo_width": 300,
+            "link": ""
+          }
+        },
+        "logo_bXUtGR": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/6_feadbb80-c99c-498d-b122-f177bb3b6316.png",
+            "logo_width": 300,
+            "link": ""
+          }
+        },
+        "logo_LazPUV": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Conformite_Europeenne__logo.svg",
+            "logo_width": 300,
+            "link": ""
+          }
+        },
+        "logo_FkmGqX": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Capture_d_ecran_2026-02-09_a_21.43.13.png",
+            "logo_width": 300,
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_8rHrHk",
+        "logo_bXUtGR",
+        "logo_LazPUV",
+        "logo_FkmGqX"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "full_width": true,
+        "stack_mobile": true,
+        "title": "Nos certifications",
+        "content": "",
+        "text_alignment": "center",
+        "items_per_row": 5,
+        "background": "#f2f2f2",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "logo_item_background": "",
+        "logo_item_border": ""
+      }
+    },
     "collection-list": {
       "type": "collection-list",
       "blocks": {
@@ -315,6 +374,7 @@
   },
   "order": [
     "image_with_text_overlay_WLA7dd",
+    "logo_list_dBbMLE",
     "collection-list",
     "scrolling-text",
     "impact-text",
