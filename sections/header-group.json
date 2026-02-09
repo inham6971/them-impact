@@ -56,7 +56,7 @@
         "text_size": "text-xs",
         "navigation_mode": "scrolling",
         "scrolling_speed": 10,
-        "background": "#ad9a80",
+        "background": "#1a1a1a",
         "background_gradient": "",
         "text_color": "#ffffff"
       }
@@ -66,7 +66,7 @@
       "settings": {
         "enable_sticky": true,
         "hide_on_scroll": false,
-        "logo": "shopify://shop_images/logo_entier1500X500.png",
+        "logo": "shopify://shop_images/MACHIN.png",
         "logo_max_width": 300,
         "logo_mobile_max_width": 155,
         "menu": "main-menu",
